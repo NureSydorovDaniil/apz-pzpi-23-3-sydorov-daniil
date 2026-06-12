@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<title>Account</title>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<div class="nav">
+    <button data-i18n="catalog" onclick="go('catalog')">Каталог</button>
+    <button data-i18n="cart" onclick="go('cart')">Кошик</button>
+    <button data-i18n="account" onclick="go('account')">Акаунт</button>
+    <button onclick="toggleLang()">UA/EN</button>
+</div>
+
+<h2 data-i18n="account_title"></h2>
+
+<div class="account-box">
+
+    <p id="userEmail"></p>
+    <p id="userPass"></p>
+
+    <button data-i18n="logout" onclick="logout()">Вийти</button>
+
+    <div id="adminPanel"></div>
+
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

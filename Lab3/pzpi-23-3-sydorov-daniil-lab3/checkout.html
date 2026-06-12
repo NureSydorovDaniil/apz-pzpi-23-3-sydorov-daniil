@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<title>Checkout</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<div class="nav">
+    <button onclick="go('catalog')">Каталог</button>
+    <button onclick="go('cart')">Кошик</button>
+    <button onclick="go('account')">Акаунт</button>
+</div>
+
+<div class="checkout-box">
+
+    <h2>Оформлення замовлення</h2>
+
+    <input
+        type="text"
+        id="fullName"
+        class="text"
+        placeholder="ПІБ">
+
+    <input
+        type="text"
+        id="phone"
+        class="text"
+        placeholder="Номер телефону">
+
+    <input
+        type="text"
+        id="city"
+        class="text"
+        placeholder="Місто доставки">
+
+    <button
+        class="btn-primary"
+        onclick="placeOrder()">
+
+        Підтвердити замовлення
+
+    </button>
+
+</div>
+
+<script src="app.js"></script>
+
+</body>
+</html>

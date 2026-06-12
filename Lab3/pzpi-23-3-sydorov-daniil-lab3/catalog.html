@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<title>Catalog</title>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<div class="nav">
+    <button data-i18n="catalog" onclick="go('catalog')">Каталог</button>
+    <button data-i18n="cart" onclick="go('cart')">Кошик</button>
+    <button data-i18n="account" onclick="go('account')">Акаунт</button>
+    <button onclick="toggleLang()">UA/EN</button>
+</div>
+
+<h2 data-i18n="catalog_title"></h2>
+
+<div id="products" class="grid"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
