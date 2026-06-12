@@ -1,1 +1,296 @@
+МІНІСТЕРСТВО ОСВІТИ І НАУКИ УКРАЇНИ
+ 
+
+ХАРКІВСЬКИЙ НАЦІОНАЛЬНИЙ
+УНІВЕРСИТЕТ РАДІОЕЛЕКТРОНІКИ
+ 
+
+
+
+Кафедра «Програмна інженерія»
+ 
+ 
+
+
+ЗВІТ
+з лабораторної роботи №2
+з дисципліни «Архітектура програмного забезпечення»
+ 
+
+
+ 
+
+
+
+
+
+Виконав:                                                                                    Прийняв:
+ст. гр. ПЗПІ-23-3                                    	                            ст. викладач катедри ПІ
+Сидоров Д.О.                                                                            Сокорчук І.П.
+
+
+
+
+
+
+
+Харків 2026
+Лабораторна робота №2 - Мобільний застосунок
+
+1 ІСТОРІЯ ЗМІН
+№	Дата	Версія звіту	Опис змін та виправлень
+1	05.06.2026	0.1	Початок роботи 
+2	06.06.2026	0.2	Редагування попередньої версії
+
+
+2 ЗАВДАННЯ
+На цій лабораторній роботі потрібно розробити мобільний програмний застосунок для будь-якої поширеної на сьогодні мобільної платформи. Мобільний застосунок повинен бути частиною системи і повинен взаємодіяти з нею. Для реалізації програмного застосунку можна використовувати технології для реалізації програмного забезпечення для мобільних платформ, вказані лектором, а саме Kotlin для Android та Swift для iOS. Звіт повинен містити опис прийнятих інженерних рішень. У ньому повинна бути показана будова мобільного застосунку та його взаємодія з іншими частинами системи.
+ 
+3 ОПИС ВИКОНОЇ РОБОТИ
+У ході виконання цієї роботи було розроблено мобільний застосунок для платформи Android з використанням мови програмування Kotlin. Застосунок демонструє просту систему продажу техніки (смартфонів, планшетів, навушників). Основною метою застосунку є демонстрування базових принципів роботи мобільного застосунку, включаючи в себе навігацію між екранами, обробку дій користувача та просту бізнес-логіку. Мобільний застосунок призначений для перегляду списку товарів, додавання товарів до кошику, видалення товарів з кошика, оформлення замовлення, введення даних користувача для подальшої доставки та підтвердження замовлення. 
+Архітектура застосунку складається з інтерфейсів користувача (екран каталогу товарів, екран кошику, екран оформлення замовлення та екран підтвердження замовлення)
+
+Використання засобів ШІ: ChatGPT-5.3
+Мета використання: Допомога у розробці та проєктуванні мобільного застосунку, генерація структури застосунку.
+Внесок Автора: перевірка та налагодження роботи застосунку, адаптування отриманих рішень, забезпечення коректної навігації, 
+
+
+4 ВИСНОВКИ
+Під час виконання лабораторної роботи, було розроблено мобільний застосунок, який забезпечує базовий функціонал для користувача, а саме перегляд товарів, можливість додавання товарів до кошику покупок, оформлення доставки товарів. Мобільний застосунок демонструє узгодженість архітектурних рішень між компонентами системи.
+
+5 ВИКОРИСТАНІ ДЖЕРЕЛА
+1.	Kotlin Programming language - https://kotlinlang.org/
+2.	Introduction to Android Development - https://www.geeksforgeeks.org/android/introduction-to-android-development/
+3.	Android Developers: Android Mobile App Developer Tools - https://developer.android.com/
+
+
+
+
+
+
+
+
+
+
+
+
+Додаток А
+Посилання на відеозапис: https://youtu.be/KLT4c0lyGPE
+Хронологічний опис:
+Вступ - 00:00 
+Реєстрація та авторизація - 3:38 
+Сторінка каталогу товарів - 5:00 
+Навігаційна панель - 5:20 
+Кошик товарів - 5:57 
+Акаунт користувача - 6:09 
+Додавання, видалення товарів в кошику - 6:44 
+Оформлення замовлення - 7:55 
+Вхід до адміністратора - 9:14 
+Дякую за увагу - 10:40
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Додаток Б
+Діаграми
+
+ 
+Рисунок 1 – Use Case Diagram 
+
+ 
+Рисунок 2 – Component Diagram
+
+ 
+Рисунок 3 – Activity Diagram
+
+
+ 
+Рисунок 4 - State Diagram
+Додаток В
+Програмний код
+
+B1. MainActivity.kt
+package com.example.minishop
+
+import android.content.Intent
+import android.os.Bundle
+import android.widget.Button
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+
+class MainActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        val btnPhone = findViewById<Button>(R.id.btnPhone)
+        val btnTablet = findViewById<Button>(R.id.btnTablet)
+        val btnHeadphones = findViewById<Button>(R.id.btnHeadphones)
+        val btnCart = findViewById<Button>(R.id.btnCart)
+
+        btnPhone.setOnClickListener {
+            CartManager.addItem("Iphone 17 Pro")
+            Toast.makeText(this, "Телефон було додано", Toast.LENGTH_SHORT).show()
+        }
+
+        btnTablet.setOnClickListener {
+            CartManager.addItem("iPad Air")
+            Toast.makeText(this, "Планшет було додано", Toast.LENGTH_SHORT).show()
+        }
+
+        btnHeadphones.setOnClickListener {
+            CartManager.addItem("AirPods Pro")
+            Toast.makeText(this, "Навушники були додані", Toast.LENGTH_SHORT).show()
+        }
+
+        btnCart.setOnClickListener {
+            startActivity(Intent(this, CartActivity::class.java))
+        }
+    }
+}
+
+B2. CartActivity.kt
+package com.example.minishop
+
+import android.content.Intent
+import android.os.Bundle
+import android.widget.ArrayAdapter
+import android.widget.Button
+import android.widget.ListView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+
+class CartActivity : AppCompatActivity() {
+
+    private lateinit var adapter: ArrayAdapter<String>
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_cart)
+
+        val listView = findViewById<ListView>(R.id.listViewCart)
+        val btnCheckout = findViewById<Button>(R.id.btnCheckout)
+
+        adapter = ArrayAdapter(
+            this,
+            android.R.layout.simple_list_item_1,
+            CartManager.items
+        )
+
+        listView.adapter = adapter
+
+        listView.setOnItemLongClickListener { _, _, position, _ ->
+            val item = CartManager.items[position]
+            CartManager.items.removeAt(position)
+            adapter.notifyDataSetChanged()
+
+            Toast.makeText(this, "$item Видален", Toast.LENGTH_SHORT).show()
+            true
+        }
+
+        btnCheckout.setOnClickListener {
+            if (CartManager.items.isEmpty()) {
+                Toast.makeText(this, "Кошик пустий", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            startActivity(Intent(this, CheckoutActivity::class.java))
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        adapter.notifyDataSetChanged()
+    }
+}
+
+B3. CheckoutActivity.kt
+package com.example.minishop
+
+import android.content.Intent
+import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
+import androidx.appcompat.app.AppCompatActivity
+
+class CheckoutActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_checkout)
+
+        val etName = findViewById<EditText>(R.id.etName)
+        val etPhone = findViewById<EditText>(R.id.etPhone)
+        val etCity = findViewById<EditText>(R.id.etCity)
+        val btnOrder = findViewById<Button>(R.id.btnOrder)
+
+        btnOrder.setOnClickListener {
+
+            if (etName.text.isEmpty() ||
+                etPhone.text.isEmpty() ||
+                etCity.text.isEmpty()
+            ) return@setOnClickListener
+
+            CartManager.clearCart()
+
+            val intent = Intent(this, ThankYouActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+        }
+    }
+}
+
+B4. ThankYouActivity.kt
+package com.example.minishop
+
+import android.content.Intent
+import android.os.Bundle
+import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
+
+class ThankYouActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_thank_you)
+
+        val btn = findViewById<Button>(R.id.btnBackToShop)
+
+        btn.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+        }
+    }
+}
+
+B5. CartManager.kt
+package com.example.minishop
+
+object CartManager {
+    val items = mutableListOf<String>()
+
+    fun addItem(item: String) {
+        items.add(item)
+    }
+
+    fun clearCart() {
+        items.clear()
+    }
+}
+
+
+
 
