@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<title>Auth</title>
+
+<link rel="stylesheet" href="styles.css">
+<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="login">
+
+    <!-- TOP TABS -->
+    <div class="auth-tabs">
+        <button id="signinTab" class="active" onclick="showLogin()">Вхід</button>
+        <button id="signupTab" onclick="showRegister()">Реєстрація</button>
+    </div>
+
+    <!-- LOGIN FORM -->
+    <div id="loginForm">
+
+        <h3>Вхід</h3>
+
+        <input id="logEmail" type="text" placeholder="Пошта" class="text">
+        <input id="logPass" type="password" placeholder="Пароль" class="text">
+
+        <button class="btn-primary" onclick="login()">Увійти</button>
+    </div>
+
+    <!-- REGISTER FORM -->
+    <div id="regForm" class="hidden">
+
+        <h3>Реєстрація</h3>
+
+        <input id="regEmail" type="text" placeholder="Пошта" class="text">
+        <input id="regPass" type="password" placeholder="Пароль" class="text">
+
+        <button class="btn-primary" onclick="register()">Зареєструватись</button>
+    </div>
+
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
