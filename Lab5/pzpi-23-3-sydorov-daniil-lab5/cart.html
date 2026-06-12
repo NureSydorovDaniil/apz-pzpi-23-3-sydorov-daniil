@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<title>Cart</title>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<div class="nav">
+    <button data-i18n="catalog" onclick="go('catalog')">Каталог</button>
+    <button data-i18n="cart" onclick="go('cart')">Кошик</button>
+    <button data-i18n="account" onclick="go('account')">Акаунт</button>
+    <button onclick="toggleLang()">UA/EN</button>
+</div>
+
+<h2 data-i18n="cart_title"></h2>
+
+<div id="cartItems" class="grid"></div>
+
+<div id="cartTotal" class="total"></div>
+
+<button class="btn-primary" onclick="go('checkout')">
+    Оформити замовлення
+</button>
+
+<script src="app.js"></script>
+</body>
+</html>
